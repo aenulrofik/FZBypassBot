@@ -16,7 +16,7 @@ basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s", #  [%(filename
 
 info("Set up Web Server...")
 Popen(
-    f"gunicorn web.wserver:app --bind 0.0.0.0:{BASE_URL_PORT} --worker-class gevent", 
+    f"gunicorn web.wserver:app --bind 0.0.0.0:80 --worker-class gevent", 
     shell=True
     )
 
