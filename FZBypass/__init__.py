@@ -6,6 +6,7 @@ from pyrogram.enums import ParseMode
 from logging import getLogger, FileHandler, StreamHandler, INFO, ERROR, basicConfig
 from uvloop import install
 from subprocess import Popen
+from logging import info
 
 install()
 basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s", #  [%(filename)s:%(lineno)d]
@@ -13,6 +14,7 @@ basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s", #  [%(filename
             handlers=[FileHandler('log.txt'), StreamHandler()],
             level=INFO)
 
+info("Set up Web Server...")
 Popen(
     f"gunicorn web.wserver:app --bind 0.0.0.0:{BASE_URL_PORT} --worker-class gevent", 
     shell=True
