@@ -5,20 +5,12 @@ from pyrogram import Client
 from pyrogram.enums import ParseMode
 from logging import getLogger, FileHandler, StreamHandler, INFO, ERROR, basicConfig
 from uvloop import install
-from subprocess import Popen
-from logging import info
 
 install()
 basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s", #  [%(filename)s:%(lineno)d]
             datefmt="%d-%b-%y %I:%M:%S %p",
             handlers=[FileHandler('log.txt'), StreamHandler()],
             level=INFO)
-
-info("Set up Web Server...")
-Popen(
-    f"gunicorn --bind 0.0.0.0:80 --worker-class gevent", 
-    shell=True
-    )
 
 getLogger("pyrogram").setLevel(ERROR)
 LOGGER = getLogger(__name__)
